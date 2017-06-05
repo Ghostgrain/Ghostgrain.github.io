@@ -165,3 +165,9 @@ function check_crack(ele1,ele2){
         return true;
     else return false;
 }
+/*获取事件源*/
+function getEvensrc(event){
+    event = event ? event : window.event;
+    var obj = event.srcElement ? event.srcElement : event.target;
+    return obj;
+}
