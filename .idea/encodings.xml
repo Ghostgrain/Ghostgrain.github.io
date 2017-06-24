@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/carousel" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/css/index.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/css/reset.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/images/avatar.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/carousel.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/main.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/require.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lv17.6.23.js" charset="UTF-8" />
   </component>
 </project>
