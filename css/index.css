@@ -5,6 +5,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 20;
 }
 #head .wrap{
     height: 45px;
@@ -29,6 +30,14 @@
     float: right;
     text-indent: -55px;
     line-height: 45px;
+}
+#head .wrap i{
+    font-size: 28px;
+    float: left;
+    height: 45px;
+    margin-left: 368px;
+    line-height: 45px;
+    color: #FFFFFF;
 }
 #rollWrap{
     width: 200px;

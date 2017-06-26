@@ -113,7 +113,6 @@ define(function(require,exports,module){
             arrImg[i].className = '';
         }
         arrImg[index].className ='selected';
-        console.log(arrImg[index]);
         if(flag==1)fadeIn(arrImg[index],20,0);
         setTimeout(function(){fadeOut(arrImg[index],10,100)},setting.speed-1400);
     };

@@ -1,8 +1,6 @@
 /**
  * Created by Administrator on 16-11-10.
  */
-window.onload=function()
-{
     var bigcont = getDom("roll");
     var cont1 =  getDom("roll_1");
     var cont2 = getDom("roll_2");
@@ -14,7 +12,6 @@ window.onload=function()
     {clearInterval(myScroll);}
     bigcont.onmouseout = function()
     {myScroll = setInterval("scrollUp()",speed);}
-}
 function scrollUp()
 {   var bigcont = getDom("roll");
     var cont1 =getDom("roll_1");
