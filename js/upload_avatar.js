@@ -35,20 +35,33 @@ define(function(require, exports, module){
             reader.onload = function(evt){
                 var oImg = new Image();
                 oImg.src = evt.target.result;
+
                 oImg.style.cssText = "position:absolute;"
                 oImg.onload = function(){
                     var flag = oImg.offsetWidth/oImg.offsetHeight;
                     var container = preMask.parentNode;
-
                     /*确定图片是横放还是竖放,*/
-                    if(flag >1 ){
+                    var preWidth = oImg.width;
+                    var preHeight = oImg.height;
+                    if(flag >= 1 ){
+                        var x = oImg.height / 160;
+                            oImg.height = 160;
+                        if(preWidth === oImg.width)//说明没有IE没有缩放
+                        {
+                            oImg.width = oImg.width / x;
+                        }
                         oImg.style.cssText += "height: 160px;";
-                    }else if(flag == 1)
-                    {
-                        oImg.style.cssText += "height: 160px";
+                        oImg.dataWidth = oImg.width;
                     }
                     else{
-                        oImg.style.cssText += "width: 160px;"
+                        var x = oImg.width / 160;
+                        oImg.width = 160;
+                        if(preHeight === oImg.height)//说明没有IE没有缩放
+                        {
+                            oImg.height = oImg.height / x;
+                        }
+                        oImg.dataHeight = oImg.height;
+                        oImg.style.cssText += "width: 160px;";
                     }
                     oImg.style.cssText += "left: 50%;top: 50%;margin-left: " + -oImg.offsetWidth/2+"px;margin-top:" + -oImg.offsetHeight/2+"px;";
                     drag(container, oImg);
@@ -230,12 +243,16 @@ define(function(require, exports, module){
         slider.max = options.max;
         slider.className = "RangeInput";
         slider.value = "1";
+
         addEvent(slider, "mousemove", function(){
             var oImg = slider.parentNode.childNodes[1].childNodes[1];
+
             if(oImg.style.width){
                 oImg.style.width = slider.value * 160 + "px";
+                oImg.style.height = slider.value * oImg.dataHeight + "px";
             }else{
                 oImg.style.height = slider.value * 160 + "px";
+                oImg.style.height = slider.value * oImg.dataWidth + "px";
             }
             oImg.style.marginTop = -oImg.offsetHeight/2 + "px";
             oImg.style.marginLeft = -oImg.offsetWidth/2 + "px";
