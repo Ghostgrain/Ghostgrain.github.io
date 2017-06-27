@@ -61,6 +61,7 @@ define(function(require, exports, module){
                             oImg.height = oImg.height / x;
                         }
                         oImg.dataHeight = oImg.height;
+
                         oImg.style.cssText += "width: 160px;";
                     }
                     oImg.style.cssText += "left: 50%;top: 50%;margin-left: " + -oImg.offsetWidth/2+"px;margin-top:" + -oImg.offsetHeight/2+"px;";
@@ -141,36 +142,18 @@ define(function(require, exports, module){
     function drag(elem, avatar)
     {
         elem.onmousedown = function(e){
-            var left = 48 - parseInt(avatar.style.marginLeft);
-            var top = 48 - parseInt(avatar.style.marginTop);
             /*边界检测*/
-            var boundary = {left:left,right: left - (avatar.offsetWidth - 160),top: top, bottom: top - (avatar.offsetHeight - 160)};
             e = e || window.event;
             var disX = e.clientX - (avatar.offsetLeft - parseInt(avatar.style.marginLeft));
             var disY = e.clientY - (avatar.offsetTop  - parseInt(avatar.style.marginTop)) ;
             document.onmousemove = function(e){
                 e = e || window.event;
-
                 avatar.left = e.clientX - disX;
                 avatar.top = e.clientY - disY;
-                if(avatar.left > boundary.left)
-                {
-                    avatar.left = boundary.left;
-                }else if(avatar.left <= boundary.right){
-                    avatar.left = boundary.right;
-                }
-                if(avatar.top > boundary.top)
-                {
-                    avatar.top = boundary.top;
-                }else if(avatar.top <= boundary.bottom){
-                    avatar.top = boundary.bottom;
-                }
+                console.log(avatar.left);
+                boundaryCheck(avatar);
                 avatar.style.left = avatar.left +"px";
                 avatar.style.top = avatar.top + "px";
-                //
-                //avatarSize.sx = 48 - avatar.offsetLeft ;
-                //avatarSize.sy = 48 - avatar.offsetTop ;
-                //clipImg(avatar, avatarSize);
                 return false;
             };
             //clipImg(avatar, avatarSize);
@@ -246,17 +229,22 @@ define(function(require, exports, module){
 
         addEvent(slider, "mousemove", function(){
             var oImg = slider.parentNode.childNodes[1].childNodes[1];
-
             if(oImg.style.width){
                 oImg.style.width = slider.value * 160 + "px";
-                oImg.style.height = slider.value * oImg.dataHeight + "px";
+                oImg.height = slider.value * oImg.dataHeight;//兼容IE不能自适应
+
             }else{
                 oImg.style.height = slider.value * 160 + "px";
-                oImg.style.height = slider.value * oImg.dataWidth + "px";
+                oImg.width = slider.value * oImg.dataWidth;//兼容IE不能自适应
             }
+            oImg.left = parseInt(oImg.style.left);
+            oImg.top = parseInt(oImg.style.top);
+            boundaryCheck(oImg);
+            /*防止缩放后图片的预览内容缺失*/
+            oImg.style.left = oImg.left + "px";
+            oImg.style.top = oImg.top + "px";
             oImg.style.marginTop = -oImg.offsetHeight/2 + "px";
             oImg.style.marginLeft = -oImg.offsetWidth/2 + "px";
-
         });
 
         /*进行模块的拼接*/
@@ -336,6 +324,26 @@ define(function(require, exports, module){
     /*获取当前项目的根目录(baseUrl)*/
     function baseUrl(){
         return (window.location.protocol+"//"+window.location.host);
+    }
+    function boundaryCheck(avatar){
+        var left = 48 - parseInt(avatar.style.marginLeft);
+        var top = 48 - parseInt(avatar.style.marginTop);
+        var boundary = {left:left,right: left - (avatar.offsetWidth - 160),top: top, bottom: top - (avatar.offsetHeight - 160)};
+        if(avatar.left > boundary.left)
+        {
+            avatar.left = boundary.left;
+            console.log(avatar.left+"||"+boundary.left);
+        }else if(avatar.left <= boundary.right){
+            avatar.left = boundary.right;
+        }
+        if(avatar.top > boundary.top)
+        {
+            avatar.top = boundary.top;
+        }else if(avatar.top <= boundary.bottom){
+            avatar.top = boundary.bottom;
+        }
+        console.log(boundary.left);
+        console.log(avatar.left);
     }
     module.exports=UploadAvatar;
 });
