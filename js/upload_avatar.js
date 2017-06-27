@@ -236,8 +236,9 @@ define(function(require, exports, module){
             }
             oImg.left = parseInt(oImg.style.left);
             oImg.top = parseInt(oImg.style.top);
-            boundaryCheck(oImg);
-
+            /*当oImg.style.left=50%用来定位的时候会出某种奇怪的问题,用下面代码避过*/
+            if(oImg.style.left.indexOf("%") === -1 && oImg.style.left.indexOf("%") === -1)
+                boundaryCheck(oImg);
             oImg.style.marginTop = -oImg.offsetHeight/2 + "px";
             oImg.style.marginLeft = -oImg.offsetWidth/2 + "px";
         });
