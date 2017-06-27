@@ -150,10 +150,7 @@ define(function(require, exports, module){
                 e = e || window.event;
                 avatar.left = e.clientX - disX;
                 avatar.top = e.clientY - disY;
-                console.log(avatar.left);
                 boundaryCheck(avatar);
-                avatar.style.left = avatar.left +"px";
-                avatar.style.top = avatar.top + "px";
                 return false;
             };
             //clipImg(avatar, avatarSize);
@@ -240,9 +237,7 @@ define(function(require, exports, module){
             oImg.left = parseInt(oImg.style.left);
             oImg.top = parseInt(oImg.style.top);
             boundaryCheck(oImg);
-            /*防止缩放后图片的预览内容缺失*/
-            oImg.style.left = oImg.left + "px";
-            oImg.style.top = oImg.top + "px";
+
             oImg.style.marginTop = -oImg.offsetHeight/2 + "px";
             oImg.style.marginLeft = -oImg.offsetWidth/2 + "px";
         });
@@ -342,8 +337,9 @@ define(function(require, exports, module){
         }else if(avatar.top <= boundary.bottom){
             avatar.top = boundary.bottom;
         }
-        console.log(boundary.left);
-        console.log(avatar.left);
+        /*防止缩放后图片的预览内容缺失*/
+        avatar.style.left = avatar.left + "px";
+        avatar.style.top = avatar.top + "px";
     }
     module.exports=UploadAvatar;
 });
