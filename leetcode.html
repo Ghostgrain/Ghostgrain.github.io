@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+
+//    var twoSum = function(nums, target) {
+//        var i;
+//        for(i = 0; i<nums.length - 1; i++){
+//            if(nums.indexOf(target - nums[i], i+1) != -1)
+//            return [i,nums.indexOf(target - nums[i], i+1)]
+//        }
+//    };
+//    var addTwoNumbers = function(l1, l2) {
+//        var i;
+//        for (i = 0; i < l1.length; i++){
+//            l1[i] = l1[i] + l2[i];
+//            if(l1[i]>9){
+//                l1[i] -= 10;
+//                l1[i+1]++;
+//            }
+//        }
+//        return l1;
+//    };
+//    console.log(addTwoNumbers([2,4,3],[5,6,4]));
+//function arr_quchong(arr)//arr去重
+//{
+//    var set = new Set(arr);
+//    console.log(set);
+//    var newArr = Array.from(set);
+//    return newArr;
+//}
+//var findMedianSortedArrays = function(nums1, nums2) {
+//    var l1 = nums1.length,l2 = nums2.length;
+//    var a1 = [], a2 = [];
+//    if(l1!=0 && l1%2==0)
+//    {a1.push( nums1[l1/2-1]);
+//    a1.push (nums1[l1/2]);
+//    }else if(l1!=0)a1.push(nums1[Math.ceil(l1/2-1)]);
+//    if(l2!=0 && l2%2==0)
+//    {   a2.push( nums2[l2/2-1]);
+//        a2.push (nums2[l2/2]);
+//    }else if(l2!=0) a2.push(nums2[Math.ceil(l2/2-1)]);
+//    var newArr = a1.concat(a2);
+//    var nl = newArr.length;
+//    return nl % 2== 0?(newArr[nl/2-1]+newArr[nl/2])/2 : newArr[Math.ceil(nl/2-1)];
+//};
+//    console.log(findMedianSortedArrays([4,5,6,8,9],[]))
+
+var longestPalindrome = function(s) {
+    var i=0;
+    for(i; i<s.length ;i++){
+        if(s.indexOf(s.charat(i)) != s.lastIndexOf(s.charat(i))
+            return s.slice(s.indexOf(s.charat(i)), s.lastIndexOf(s.charat(i))
+    }
+};
+    console.log(longestPalindrome('babad'));
+</script>
+</html>
